@@ -8,6 +8,7 @@ const Slider = ({
   imageList,
   width,
   height,
+  onActiveChange = (active) => {},
   loop = true,
   autoPlay = true,
   autoPlayInterval = 3000,
@@ -55,6 +56,10 @@ const Slider = ({
       let autoSlider = setInterval(setNextImage, autoPlayInterval);
       return () => clearInterval(autoSlider);
     }
+  }, [active]);
+
+  useEffect(() => {
+    onActiveChange(active);
   }, [active]);
 
   return (
